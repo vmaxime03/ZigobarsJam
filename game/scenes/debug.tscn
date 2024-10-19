@@ -25,8 +25,6 @@ mesh = SubResource("BoxMesh_evod2")
 [node name="Player" parent="." instance=ExtResource("1_owex6")]
 position = Vector2(549, 270)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
 [node name="Bloc" parent="." instance=ExtResource("2_ahhrw")]
 position = Vector2(1103, 405)
 
