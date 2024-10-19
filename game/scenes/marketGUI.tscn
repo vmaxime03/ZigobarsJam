@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvyj4tyt08mau"]
+[gd_scene load_steps=6 format=3 uid="uid://dvyj4tyt08mau"]
 
-[ext_resource type="Texture2D" uid="uid://bhc4f6tcmhvje" path="res://assets/art/background/market.jpg" id="2_i6xfp"]
-[ext_resource type="Texture2D" uid="uid://btjh1r13y3mvj" path="res://assets/art/iconeMarket/iconeEssence.png" id="3_tjhlh"]
-[ext_resource type="Texture2D" uid="uid://bhrasndf8sugx" path="res://assets/art/iconeMarket/iconeGrapin.png" id="4_1g43b"]
-[ext_resource type="Script" path="res://scripts/market/carburant.gd" id="4_g82gf"]
-[ext_resource type="Texture2D" uid="uid://di7oj1ruyw5jl" path="res://assets/art/iconeMarket/iconeO2.png" id="5_6fac3"]
-[ext_resource type="Script" path="res://scripts/market/money.gd" id="5_phf7n"]
+[ext_resource type="Texture2D" uid="uid://daws4plyq0r3l" path="res://assets/art/background/market.jpg" id="1_8xbia"]
+[ext_resource type="Texture2D" uid="uid://qb8d5v0rvgua" path="res://assets/art/iconeMarket/iconeEssence.png" id="3_tjhlh"]
+[ext_resource type="Texture2D" uid="uid://cnwkptwbjs470" path="res://assets/art/iconeMarket/iconeGrapin.png" id="4_1g43b"]
+[ext_resource type="Texture2D" uid="uid://crjygqkpus815" path="res://assets/art/iconeMarket/iconeO2.png" id="5_6fac3"]
 
 [sub_resource type="GDScript" id="GDScript_8gnb3"]
 script/source = "extends Control
@@ -45,7 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_i6xfp")
+texture = ExtResource("1_8xbia")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
 custom_minimum_size = Vector2(100, 100)
@@ -70,7 +68,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Money = "
 horizontal_alignment = 1
-script = ExtResource("5_phf7n")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
@@ -89,7 +86,6 @@ icon = ExtResource("3_tjhlh")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
-script = ExtResource("4_g82gf")
 
 [node name="prix" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/carburant"]
 custom_minimum_size = Vector2(250, 50)
