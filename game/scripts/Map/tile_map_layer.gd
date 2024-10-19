@@ -6,8 +6,6 @@ extends TileMapLayer
 @onready var rr = preload("res://scenes/RessourceRare.tscn")
 func _ready() -> void:
 	generate_map(player.position)
-	
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,9 +30,10 @@ func generate_map(position):
 						var rare = randf_range(0,1)*(x1+x+y1+y)/20000
 						var node
 						if(rare>0.9):
-							node = r.instantiate()
-						else:
 							node = rr.instantiate()
+							print("crash1")
+						else:
+							node = r.instantiate()
 						node.position.x = x1+x;
 						node.position.y = y1+y;
 						add_child(node)

@@ -25,16 +25,16 @@ func _ready() -> void:
 	match type:
 		0:
 			if (rare):
-				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/asteroidGold.png")
+				get_child(0).get_child(0).texture = ResourceLoader.load("res://assets/art/dechets/asteroidGold.png")
 			elif(randi_range(0,1)==0): 
-				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/asteroide2.png")
+				get_child(0).get_child(0).texture = ResourceLoader.load("res://assets/art/dechets/asteroide2.png")
 			else:
-				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/asteroide1.png")
+				get_child(0).get_child(0).texture = ResourceLoader.load("res://assets/art/dechets/asteroide1.png")
 		1:
-			if(rare):
-				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/debris1.png")
+			if(randi_range(0,1)==0):
+				get_child(0).get_child(0).texture = ResourceLoader.load("res://assets/art/dechets/debris1.png")
 			else:
-				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/debris2.png")
+				get_child(0).get_child(0).texture = ResourceLoader.load("res://assets/art/dechets/debris2.png")
 			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

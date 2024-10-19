@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://u5wfhbe338x3"]
+[gd_scene load_steps=3 format=3 uid="uid://cpg02ll63jbij"]
 
 [ext_resource type="Script" path="res://scripts/objetInteractif/ressource.gd" id="1_sbybf"]
 [ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_cx46o"]
 
-[node name="RessourceRare" type="Node"]
+[node name="Ressource" type="Node2D"]
 script = ExtResource("1_sbybf")
 rare = true
 
 [node name="Bloc" parent="." instance=ExtResource("2_cx46o")]
+position = Vector2(554, 135)
+collision_layer = 2
+collision_mask = 1
+script = null
+metadata/_edit_group_ = true
