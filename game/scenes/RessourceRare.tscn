@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://u5wfhbe338x3"]
+
+[ext_resource type="Script" path="res://scripts/objetInteractif/ressource.gd" id="1_sbybf"]
+[ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_cx46o"]
+
+[node name="RessourceRare" type="Node"]
+script = ExtResource("1_sbybf")
+rare = true
+
+[node name="Bloc" parent="." instance=ExtResource("2_cx46o")]

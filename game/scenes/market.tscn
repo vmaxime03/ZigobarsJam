@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://11761as7of2l"]
+
+[ext_resource type="Texture2D" uid="uid://7svrq0in4r1o" path="res://assets/art/temp_bloc.png" id="1_qtu6t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7niy2"]
+radius = 16.52
+
+[node name="Market" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7niy2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qtu6t")

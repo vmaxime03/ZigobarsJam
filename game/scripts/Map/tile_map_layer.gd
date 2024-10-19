@@ -3,6 +3,7 @@ extends TileMapLayer
 @export var concentrationDechet : int = 1
 # Called when the node enters the scene tree for the first time.
 @onready var r = preload("res://scenes/Ressource.tscn")
+@onready var rr = preload("res://scenes/RessourceRare.tscn")
 func _ready() -> void:
 	generate_map(player.position)
 	
@@ -28,10 +29,18 @@ func generate_map(position):
 				var y= RandomNumberGenerator.new().randi_range(0,50)
 				if(x>pos_x+10||x<pos_x-10):
 					if(y>pos_y+10||y<pos_y-10):
-						var r = r.instantiate()
-						r.position.x = x1+x;
-						r.position.y = y1+y;
-						add_child(r)
+						var rare = randf_range(0,1)*(x1+x+y1+y)/20000
+						var node
+						if(rare>0.9):
+							node = r.instantiate()
+						else:
+							node = rr.instantiate()
+						node.position.x = x1+x;
+						node.position.y = y1+y;
+						add_child(node)
 			y1 += 50
 		y1 = -player.carb-hauteur
 		x1 +=50
+		
+
+	

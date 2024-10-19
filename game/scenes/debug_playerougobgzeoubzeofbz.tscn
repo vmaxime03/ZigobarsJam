@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://curt2oj7vkuv4"]
+
+[ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="1_gcax8"]
+[ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_10nlu"]
+[ext_resource type="PackedScene" uid="uid://bvgq4s58143o4" path="res://scenes/objet_interactif.tscn" id="3_syvh1"]
+[ext_resource type="AudioStream" uid="uid://bok2e7d4mkakk" path="res://assets/audio/Musics/Main_theme.wav" id="4_sw5oe"]
+
+[node name="DebugPlayerougobgzeoubzeofbz" type="Node2D"]
+position = Vector2(-2, 5)
+
+[node name="Player" parent="." instance=ExtResource("1_gcax8")]
+position = Vector2(485, 325)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_10nlu")]
+position = Vector2(785, 138)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_10nlu")]
+position = Vector2(190, 114)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_10nlu")]
+position = Vector2(366, 97)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("2_10nlu")]
+position = Vector2(587, 114)
+
+[node name="ObjetInteractif" parent="." node_paths=PackedStringArray("text", "audio") instance=ExtResource("3_syvh1")]
+position = Vector2(1052, 321)
+text = NodePath("../RichTextLabel")
+audio = NodePath("../AudioStreamPlayer2D")
+
+[node name="ObjetInteractif2" parent="." node_paths=PackedStringArray("text", "audio") instance=ExtResource("3_syvh1")]
+position = Vector2(980, -17)
+text = NodePath("../RichTextLabel")
+audio = NodePath("../AudioStreamPlayer2D")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+text = "qrbniqzbihqerbqzrihgbrqezih"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_sw5oe")

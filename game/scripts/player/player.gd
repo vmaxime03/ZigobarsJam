@@ -37,9 +37,9 @@ extends CharacterBody2D
 @onready var hp : int = maxhp
 
 @export_group("AFFICHAGE STATS")
-@export var carbBar : TextureProgressBar
-@export var o2Bar : TextureProgressBar
-@export var interactButton : Button
+@export var carbBar : TextureProgressBar = TextureProgressBar.new()
+@export var o2Bar : TextureProgressBar = TextureProgressBar.new()
+@export var interactButton : Button = Button.new()
 
 
 @onready var power : int = minpower

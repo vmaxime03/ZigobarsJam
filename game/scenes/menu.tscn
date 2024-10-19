@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyunvq6l77nor"]
+[gd_scene load_steps=5 format=3 uid="uid://cyunvq6l77nor"]
 
+[ext_resource type="Texture2D" uid="uid://bi4btej2xwjx0" path="res://assets/art/background/backMenu.png" id="1_5ghtu"]
 [ext_resource type="Script" path="res://scripts/menu/play_button.gd" id="1_xwu7g"]
 [ext_resource type="Script" path="res://scripts/menu/quit_button.gd" id="2_koe0g"]
+[ext_resource type="AudioStream" uid="uid://cc5q6ljp5eq3q" path="res://assets/audio/Musics/Main_theme.wav" id="4_oa00s"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,32 +13,50 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5ghtu")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 500)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -28.5
-offset_right = 58.0
-offset_bottom = 28.5
+offset_left = -307.5
+offset_top = -250.0
+offset_right = 307.5
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.879578, 0.486707, 9.62615e-07, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
 text = "ZIGOMAR
-  retour station"
-metadata/_edit_lock_ = true
+      retour station"
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(85, 85)
 layout_mode = 2
 script = ExtResource("1_xwu7g")
-metadata/_edit_lock_ = true
 
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]
+[node name="Button2" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(85, 85)
 layout_mode = 2
 script = ExtResource("2_koe0g")
-metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_oa00s")
+autoplay = true
