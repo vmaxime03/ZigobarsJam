@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="1_owex6"]
 [ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_ahhrw"]
 [ext_resource type="PackedScene" uid="uid://bvgq4s58143o4" path="res://scenes/objet_interactif.tscn" id="3_1fy3i"]
-[ext_resource type="Texture2D" uid="uid://dwdgx8tlgpuf7" path="res://assets/art/temp_bloc_interac.png" id="4_6ffsc"]
-[ext_resource type="AudioStream" uid="uid://clndrlpxlo8jt" path="res://assets/audio/file_example_MP3_700KB.mp3" id="4_xkht5"]
+[ext_resource type="Texture2D" uid="uid://btrxcxtalvanf" path="res://assets/art/temp_bloc_interac.png" id="4_6ffsc"]
+[ext_resource type="AudioStream" uid="uid://ch0k64ml6rvua" path="res://assets/audio/file_example_MP3_700KB.mp3" id="4_xkht5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_enott"]
 
