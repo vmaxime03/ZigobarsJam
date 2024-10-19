@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dfx2khyuupxd6"]
+
+[node name="SelectButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "INTERACT"

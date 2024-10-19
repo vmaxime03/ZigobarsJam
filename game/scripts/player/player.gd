@@ -42,6 +42,7 @@ extends CharacterBody2D
 @export var interactButton : Button = Button.new()
 
 
+
 @onready var power : int = minpower
 
 @export_group("SCENE")

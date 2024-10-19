@@ -1,0 +1,130 @@
+[gd_scene load_steps=13 format=3 uid="uid://ctfl2sf2oikup"]
+
+[ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="1_owex6"]
+[ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_ahhrw"]
+[ext_resource type="Texture2D" uid="uid://d25plol515f2w" path="res://assets/art/progress_under.png" id="2_bu18s"]
+[ext_resource type="PackedScene" uid="uid://bvgq4s58143o4" path="res://scenes/objet_interactif.tscn" id="3_1fy3i"]
+[ext_resource type="Texture2D" uid="uid://qh6yl0nmi8w0" path="res://assets/art/progress_over.png" id="3_ymwf3"]
+[ext_resource type="Texture2D" uid="uid://mvamk8j3m4ja" path="res://assets/art/progress.png" id="4_5usun"]
+[ext_resource type="Texture2D" uid="uid://6r2rua3pqkyq" path="res://assets/art/temp_bloc_interac.png" id="4_6ffsc"]
+[ext_resource type="AudioStream" uid="uid://dleomy834jsl4" path="res://assets/audio/file_example_MP3_700KB.mp3" id="4_xkht5"]
+[ext_resource type="Texture2D" uid="uid://d2w051yy44vm3" path="res://assets/art/progresso2.png" id="5_3ms3g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_enott"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_evod2"]
+material = SubResource("ShaderMaterial_enott")
+custom_aabb = AABB(50, 50, 50, 0, 0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ouag5"]
+radius = 16.0
+
+[node name="Debug" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(575.75, 323.75)
+scale = Vector2(1152.5, 648.5)
+mesh = SubResource("BoxMesh_evod2")
+
+[node name="Player" parent="." node_paths=PackedStringArray("carbBar", "o2Bar", "interactButton") instance=ExtResource("1_owex6")]
+position = Vector2(549, 270)
+carbBar = NodePath("Camera2D/Control/TextureProgressBar")
+o2Bar = NodePath("Camera2D/Control/TextureProgressBar2")
+interactButton = NodePath("Camera2D/Control/SelectButton")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Control" type="Control" parent="Player/Camera2D"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -581.0
+offset_top = -326.0
+offset_right = 571.0
+offset_bottom = 322.0
+metadata/_edit_group_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Player/Camera2D/Control"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+offset_left = 144.0
+offset_top = 464.0
+offset_right = 160.0
+offset_bottom = 480.0
+scale = Vector2(10, 10)
+fill_mode = 4
+texture_under = ExtResource("2_bu18s")
+texture_over = ExtResource("3_ymwf3")
+texture_progress = ExtResource("4_5usun")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="Player/Camera2D/Control"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -552.0
+offset_top = -304.0
+offset_right = -536.0
+offset_bottom = -288.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(10, 10)
+fill_mode = 4
+texture_under = ExtResource("2_bu18s")
+texture_over = ExtResource("3_ymwf3")
+texture_progress = ExtResource("5_3ms3g")
+
+[node name="SelectButton" type="Button" parent="Player/Camera2D/Control"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 528.0
+offset_right = 308.0
+offset_bottom = 559.0
+text = "INTERACT"
+
+[node name="Label" type="Label" parent="Player/Camera2D/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Bloc" parent="." instance=ExtResource("2_ahhrw")]
+position = Vector2(1103, 405)
+
+[node name="Bloc2" parent="." instance=ExtResource("2_ahhrw")]
+
+[node name="Bloc3" parent="." instance=ExtResource("2_ahhrw")]
+position = Vector2(336, 400)
+
+[node name="ObjetInteractif2" parent="." node_paths=PackedStringArray("text", "audio") instance=ExtResource("3_1fy3i")]
+position = Vector2(984, 272)
+text = NodePath("RichTextLabel")
+audio = NodePath("AudioStreamPlayer2D")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ObjetInteractif2"]
+offset_left = -64.0
+offset_top = -168.0
+offset_right = 64.0
+offset_bottom = -48.0
+text = "test 
+test
+test
+test
+test"
+metadata/_edit_group_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ObjetInteractif2"]
+stream = ExtResource("4_xkht5")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ObjetInteractif2"]
+texture = ExtResource("4_6ffsc")
+
+[node name="HookableBloc" type="StaticBody2D" parent="ObjetInteractif2"]
+collision_layer = 34
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetInteractif2/HookableBloc"]
+shape = SubResource("CircleShape2D_ouag5")
