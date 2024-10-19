@@ -24,12 +24,14 @@ func _ready() -> void:
 		possede_boite_noire = false
 	match type:
 		0:
-			if(randi_range(0,1)==0):
-				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/asteroide1.png")
-			else:
+			if (rare):
+				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/asteroidGold.png")
+			elif(randi_range(0,1)==0): 
 				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/asteroide2.png")
+			else:
+				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/asteroide1.png")
 		1:
-			if(randi_range(0,1)==0):
+			if(rare):
 				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/debris1.png")
 			else:
 				get_child(0).get_child(1).texture = ResourceLoader.load("res://assets/art/dechets/debris2.png")
@@ -43,6 +45,7 @@ func _getValue()->int:
 	if(rare):
 		value *=rare_coefficient
 	value += value*type
+
 	return int(value)
 func _getBoiteNoire()->String:
 	var boite_noire =""

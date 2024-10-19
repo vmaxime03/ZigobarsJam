@@ -144,7 +144,7 @@ _data = {
 "move": SubResource("Animation_qjcpm")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("carbBar", "o2Bar", "interactButton", "body", "arm", "aspirateur") groups=["joueur"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("carbBar", "o2Bar", "interactButton", "body", "arm", "aspirateur", "body_animation_tree", "arm_animation_tree") groups=["joueur"]]
 visibility_layer = 2
 collision_mask = 6
 script = ExtResource("1_5785e")
@@ -155,6 +155,8 @@ interactButton = NodePath("Control/SelectButton")
 body = NodePath("body")
 arm = NodePath("arm")
 aspirateur = NodePath("arm/Aspirateur")
+body_animation_tree = NodePath("AnimationTree")
+arm_animation_tree = NodePath("AnimationTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5inrx")
@@ -171,6 +173,19 @@ texture = ExtResource("3_03r80")
 [node name="Aspirateur" parent="arm" node_paths=PackedStringArray("player") instance=ExtResource("4_t4ctc")]
 player = NodePath("../..")
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_f6ce5")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4aiqe")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Arrièreplan" parent="Camera2D" instance=ExtResource("8_mprob")]
+
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 3
@@ -179,7 +194,6 @@ offset_left = -85.0
 offset_top = -73.0
 offset_right = 85.0
 offset_bottom = 73.0
-metadata/_edit_group_ = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
 custom_minimum_size = Vector2(16, 16)
@@ -226,16 +240,3 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "INTERACT"
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_f6ce5")
-anim_player = NodePath("../AnimationPlayer")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_4aiqe")
-}
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Arrièreplan" parent="Camera2D" instance=ExtResource("8_mprob")]

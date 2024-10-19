@@ -36,9 +36,9 @@ extends CharacterBody2D
 @export var arm : Sprite2D
 @export var aspirateur : Aspirateur
 @export var body_animation_tree : AnimationTree
-var body_state_machine : AnimationNodeStateMachinePlayback = body_animation_tree.get("parameters/playback")
+@onready var body_state_machine : AnimationNodeStateMachinePlayback = body_animation_tree.get("parameters/playback")
 @export var arm_animation_tree : AnimationTree
-var arm_state_machine : AnimationNodeStateMachinePlayback = arm_animation_tree.get("parameters/playback")
+@onready var arm_state_machine : AnimationNodeStateMachinePlayback = arm_animation_tree.get("parameters/playback")
 
 var isObjetInteractifProche : bool = false
 var objetInteractifProche : ObjetInteractif = null
