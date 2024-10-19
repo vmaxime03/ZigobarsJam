@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctfl2sf2oikup"]
+[gd_scene load_steps=14 format=3 uid="uid://ctfl2sf2oikup"]
 
 [ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="1_owex6"]
 [ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_ahhrw"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://6r2rua3pqkyq" path="res://assets/art/temp_bloc_interac.png" id="4_6ffsc"]
 [ext_resource type="AudioStream" uid="uid://dleomy834jsl4" path="res://assets/audio/file_example_MP3_700KB.mp3" id="4_xkht5"]
 [ext_resource type="Texture2D" uid="uid://d2w051yy44vm3" path="res://assets/art/progresso2.png" id="5_3ms3g"]
+[ext_resource type="Script" path="res://scripts/debuglabel.gd" id="6_wx8so"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_enott"]
 
@@ -38,9 +39,9 @@ interactButton = NodePath("Camera2D/Control/SelectButton")
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 3
 anchors_preset = 0
-offset_left = -573.0
+offset_left = -581.0
 offset_top = -326.0
-offset_right = 579.0
+offset_right = 571.0
 offset_bottom = 322.0
 metadata/_edit_group_ = true
 
@@ -84,6 +85,18 @@ offset_top = 528.0
 offset_right = 308.0
 offset_bottom = 559.0
 text = "INTERACT"
+
+[node name="Label" type="Label" parent="Player/Camera2D/Control" node_paths=PackedStringArray("player")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("6_wx8so")
+player = NodePath("../../..")
 
 [node name="Bloc" parent="." instance=ExtResource("2_ahhrw")]
 position = Vector2(1103, 405)

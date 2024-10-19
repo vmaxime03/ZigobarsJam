@@ -234,7 +234,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("body", "arm", "aspirateur", "body_animation_tree", "arm_animation_tree") groups=["joueur"]]
 collision_mask = 6
 script = ExtResource("1_5785e")
-carb = 1000
+save_file = "res://data/save0.txt"
 body = NodePath("body")
 arm = NodePath("arm")
 aspirateur = NodePath("arm/Aspirateur")
