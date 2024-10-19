@@ -1,10 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://dgxyex6m3exjm"]
+[gd_scene load_steps=37 format=3 uid="uid://dgxyex6m3exjm"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_5785e"]
-[ext_resource type="Texture2D" uid="uid://bkm4lotklys01" path="res://assets/art/vaisseau/vaisseauBaseAllAnime.png" id="2_0udfh"]
-[ext_resource type="Texture2D" uid="uid://c2sogd45bgoer" path="res://assets/art/vaisseau/teteVaisseau.png" id="3_03r80"]
+[ext_resource type="Texture2D" uid="uid://b00sqiglndv53" path="res://assets/art/vaisseau/vaisseauBaseAllAnime.png" id="2_0udfh"]
+[ext_resource type="Texture2D" uid="uid://co7gp0mjjnvj" path="res://assets/art/vaisseau/teteVaisseau_full.png" id="3_hpksx"]
 [ext_resource type="PackedScene" uid="uid://00dvf4im8tux" path="res://scenes/aspirateur.tscn" id="4_t4ctc"]
-[ext_resource type="PackedScene" uid="uid://csk2sjrs4mf2t" path="res://scenes/Arrièreplan.tscn" id="8_mprob"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5inrx"]
 radius = 32.0
@@ -141,16 +140,105 @@ _data = {
 "move": SubResource("Animation_qjcpm")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8qanm"]
+animation = &"aspirer"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_w2djy"]
+graph_offset = Vector2(-77.4989, -15.991)
+nodes/aspirer/node = SubResource("AnimationNodeAnimation_8qanm")
+nodes/aspirer/position = Vector2(140, 100)
+node_connections = [&"output", 0, &"aspirer"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ttcbn"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_w17gu"]
+graph_offset = Vector2(-115, 115)
+nodes/idle/node = SubResource("AnimationNodeAnimation_ttcbn")
+nodes/idle/position = Vector2(140, 160)
+node_connections = [&"output", 0, &"idle"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_14i4k"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kl6am"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_308vd"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_13k7l"]
+states/Start/position = Vector2(209, 100)
+states/aspirer/node = SubResource("AnimationNodeBlendTree_w2djy")
+states/aspirer/position = Vector2(553, 39)
+states/idle/node = SubResource("AnimationNodeBlendTree_w17gu")
+states/idle/position = Vector2(403, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_14i4k"), "idle", "aspirer", SubResource("AnimationNodeStateMachineTransition_kl6am"), "aspirer", "idle", SubResource("AnimationNodeStateMachineTransition_308vd")]
+
+[sub_resource type="Animation" id="Animation_jgc6a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_fhf74"]
+resource_name = "aspirer"
+length = 0.375004
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_a0nfe"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1pcbv"]
+_data = {
+"RESET": SubResource("Animation_jgc6a"),
+"aspirer": SubResource("Animation_fhf74"),
+"idle": SubResource("Animation_a0nfe")
+}
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("body", "arm", "aspirateur", "body_animation_tree", "arm_animation_tree") groups=["joueur"]]
-visibility_layer = 2
 collision_mask = 6
 script = ExtResource("1_5785e")
-carb = 1000
+save_file = "res://data/save0.txt"
 body = NodePath("body")
 arm = NodePath("arm")
 aspirateur = NodePath("arm/Aspirateur")
-body_animation_tree = NodePath("AnimationTree")
-arm_animation_tree = NodePath("AnimationTree")
+body_animation_tree = NodePath("bodyAnimeTree")
+arm_animation_tree = NodePath("armAnimTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5inrx")
@@ -162,20 +250,27 @@ hframes = 13
 metadata/_edit_group_ = true
 
 [node name="arm" type="Sprite2D" parent="."]
-texture = ExtResource("3_03r80")
+texture = ExtResource("3_hpksx")
+hframes = 4
+frame = 3
 
 [node name="Aspirateur" parent="arm" node_paths=PackedStringArray("player") instance=ExtResource("4_t4ctc")]
 player = NodePath("../..")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="bodyAnimeTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_f6ce5")
-anim_player = NodePath("../AnimationPlayer")
+anim_player = NodePath("../bodyAnimePlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="bodyAnimePlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4aiqe")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="armAnimTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_13k7l")
+anim_player = NodePath("../armAnimPlayer")
 
-[node name="Arrièreplan" parent="Camera2D" instance=ExtResource("8_mprob")]
+[node name="armAnimPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1pcbv")
+}

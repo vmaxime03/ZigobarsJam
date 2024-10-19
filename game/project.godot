@@ -88,7 +88,7 @@ l_maj={
 2d_physics/layer_4="grappin"
 2d_physics/layer_5="aspirateur"
 2d_physics/layer_6="aspirable"
-2d_physics/layer_7="dechetRecuperable"
+2d_physics/layer_7="pullable"
 
 [physics]
 

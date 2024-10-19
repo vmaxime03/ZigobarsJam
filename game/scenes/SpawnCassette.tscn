@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://rgfjd6vjhur4"]
+[gd_scene load_steps=3 format=3 uid="uid://cso7aiusk6igt"]
 
 [ext_resource type="Script" path="res://scripts/cassette/spawnCassette.gd" id="1_egn8y"]
-[ext_resource type="PackedScene" uid="uid://bwom00i764f3g" path="res://scenes/audio_stream_player_2d.tscn" id="2_8uugr"]
+[ext_resource type="PackedScene" path="res://scenes/audio_stream_player_2d.tscn" id="2_8uugr"]
 
 [node name="SpawnerCassette" type="Node2D"]
 script = ExtResource("1_egn8y")

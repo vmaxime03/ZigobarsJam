@@ -1,0 +1,21 @@
+{
+"BASE_SPEED": "Vector2(300, 300)",
+"DASH_VELOCITY": "Vector2(300, 300)",
+"HOOK_PULL_FORCE": "10",
+"argent": "410",
+"aspi_force": "50",
+"aspi_range": "256",
+"aspirateur_enable": "true",
+"brake_enable": "true",
+"dashBaseCD": "5",
+"dashCost": "30",
+"dash_enable": "true",
+"hook_enable": "true",
+"hook_maxdistance": "500",
+"hook_speed": "Vector2(500, 500)",
+"maxcarb": "500",
+"maxhp": "3",
+"maxo2": "100.0",
+"maxpower": "10",
+"minpower": "1"
+}
