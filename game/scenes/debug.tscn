@@ -30,11 +30,8 @@ position = Vector2(575.75, 323.75)
 scale = Vector2(1152.5, 648.5)
 mesh = SubResource("BoxMesh_evod2")
 
-[node name="Player" parent="." node_paths=PackedStringArray("carbBar", "o2Bar", "interactButton") instance=ExtResource("1_owex6")]
+[node name="Player" parent="." instance=ExtResource("1_owex6")]
 position = Vector2(549, 270)
-carbBar = NodePath("Camera2D/Control/TextureProgressBar")
-o2Bar = NodePath("Camera2D/Control/TextureProgressBar2")
-interactButton = NodePath("Camera2D/Control/SelectButton")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
