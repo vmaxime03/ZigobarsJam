@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctqxtnxto24lv"]
+
+[ext_resource type="Script" path="res://scripts/hook/hook.gd" id="1_ffb8e"]
+[ext_resource type="Texture2D" uid="uid://cjdergru8r5oc" path="res://assets/art/grapin/grapin.png" id="2_64f8g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nri56"]
+radius = 6.0
+
+[node name="hook" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_ffb8e")
+sprite = NodePath("Node2D/Sprite2D")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, 1.10269e-06)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_64f8g")
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+shape = SubResource("CircleShape2D_nri56")
+
+[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]
