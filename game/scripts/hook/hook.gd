@@ -72,8 +72,7 @@ func _physics_process(delta: float) -> void :
 			delete()
 	# si l'objet est attirable, actualise le point du grapin
 	else : 
-		if (pullable) : 
-			position = to_global(fixedOn.position)/2
+		position = to_global(fixedOn.position)/2
 		rope.set_point_position(1, position)
 
 		# rotation de la point par rapport au joueur
@@ -83,18 +82,18 @@ func _physics_process(delta: float) -> void :
 		
 # quand le grapin entre en colision avec un objet 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	# on recupere l'objet avec qui il colisionne 
-	fixed = true
-	fixedOn = body
-	
+	if (!fixed):
+		# on recupere l'objet avec qui il colisionne 
+		fixed = true
+		fixedOn = body
 
-	# on cherche si l'objet a un parent hookable
-	var n : Node = body
-	while (n != null and !n.is_in_group("hookable")):
-		n = n.get_parent()
-				
-	# si oui, on indique l'objet pullable et on met l'objet hookablke a fixedOn
-	if (n != null and n.is_in_group("hookable")) :
-		pullable = true
-		fixedOn = n
+		# on cherche si l'objet a un parent hookable
+		var n : Node = body
+		while (n != null and !n.is_in_group("hookable")):
+			n = n.get_parent()
+					
+		# si oui, on indique l'objet pullable et on met l'objet hookablke a fixedOn
+		if (n != null and n.is_in_group("hookable")) :
+			pullable = true
+			fixedOn = n
 	

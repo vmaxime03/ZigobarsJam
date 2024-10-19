@@ -6,12 +6,15 @@ extends CharacterBody2D
 @export_subgroup("SKILLS")
 @export var hook_enable : bool = true
 @export var dash_enable : bool = true
+@export var brake_enable : bool = true
+@export var aspirateur_enable : bool = true
 
 @export_subgroup("STATS")
 @export var BASE_SPEED : Vector2  = Vector2(300, 300)
 @export var HOOK_PULL_FORCE : int = 10
 @export var maxpower : int = 10
 @export var minpower : int = 1
+@export var o2 : float = 100
 @export var carb : int = 100
 @export var dashBaseCD : int = 5
 @export var dashCost : int = 30
@@ -21,6 +24,7 @@ extends CharacterBody2D
 
 @export_group("AFFICHAGE STATS")
 @export var carbBar : TextureProgressBar
+@export var o2Bar : TextureProgressBar
 @export var interactButton : Button
 
 
@@ -29,7 +33,7 @@ extends CharacterBody2D
 @export_group("SCENE")
 @export var body : Sprite2D
 @export var arm : Sprite2D
-
+@export var aspirateur : Aspirateur
 @export var animation_tree : AnimationTree
 @onready var state_machine : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
@@ -44,16 +48,22 @@ var hook : Hook
 @onready var dashCD : int = 0
 
 
+# TODO
+func check_for_loose():
+	pass
+
 # update la barre de carburant
 func _update_carb_bar() -> void :
 	carbBar.value = carb
 
-# TODO barre d'oxygene 
+# bar d oxygene
+func _update_o2_bar() -> void :
+	o2Bar.value = o2 
 
 # on ready
 func _ready() -> void:
 	carbBar.max_value = carb
-	
+	o2Bar.max_value = o2
 	interactButton.hide()
 
 
@@ -63,6 +73,10 @@ var vel : Vector2
 var dir : Vector2
 
 func _physics_process(delta: float) -> void:
+	
+	check_for_loose()
+
+
 	mousePos = get_global_mouse_position()
 	vel = velocity
 
@@ -88,7 +102,6 @@ func _physics_process(delta: float) -> void:
 		# jouer l'animation
 		state_machine.travel("idle")
 	
-	#TODO freinage
 
 
 	
@@ -105,9 +118,18 @@ func _physics_process(delta: float) -> void:
 	# si le dash est deverouiller, gere l'action du dash
 	if (dash_enable):
 		dash_action()
+
+	if (brake_enable):
+		brake_action()
+
+	if (aspirateur_enable):
+		aspirateur_action()
 	
 	# actualiser la barre de carburant
 	_update_carb_bar()
+
+	o2 -= delta
+	_update_o2_bar()
 	
 	# on gere les rotation des sprite en fonction de la souris et de la velocité
 	arm.rotation = atan2(mousePos.y - position.y, mousePos.x - position.x)
@@ -118,9 +140,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 
+	
+func aspirateur_action() -> void :
+	aspirateur.actif = Input.is_action_pressed("r_click")
+		
+
+func brake_action():
+	if Input.is_action_pressed("space"):
+		vel *= 0.95
+
 # action dash
 func dash_action():
-	if (Input.is_action_just_pressed("space")) :
+	if (Input.is_action_just_pressed("l_maj")) :
 		if (dashCD <= 0 and carb >= dashCost) : 
 			print("dash")
 			dashCD = dashBaseCD
@@ -164,12 +195,14 @@ func hook_physics() -> void:
 	if (hook != null):
 		if (hook.fixed) : 
 			var hookVector : Vector2 = hook.get_vector()
+		
+		
 			var effectivePullForce = HOOK_PULL_FORCE * hook.get_tension()
 			
-			vel += hookVector.normalized() * effectivePullForce 
+			vel += hookVector.normalized() * effectivePullForce
 			
 			if (hook.pullable) :
-				hook.fixedOn.compute_hook_pull(hookVector, effectivePullForce)
+				hook.fixedOn.compute_hook_pull(hookVector, effectivePullForce * vel.length())
 
 
 # quand on entre dans la range d'un objet interactif, cette methode est appele par ObjetInteractif

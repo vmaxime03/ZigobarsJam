@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://00dvf4im8tux"]
+
+[ext_resource type="Script" path="res://scripts/player/aspirateur.gd" id="1_gwkgw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dm11p"]
+size = Vector2(64, 48)
+
+[node name="Aspirateur" type="Node2D" node_paths=PackedStringArray("collision_shape")]
+script = ExtResource("1_gwkgw")
+collision_shape = NodePath("aspi/CollisionPolygon2D")
+
+[node name="aspi" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="aspi"]
+
+[node name="collector" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collector"]
+position = Vector2(32, 0)
+shape = SubResource("RectangleShape2D_dm11p")
+
+[connection signal="body_entered" from="aspi" to="." method="_on_aspi_body_entered"]
+[connection signal="body_exited" from="aspi" to="." method="_on_aspi_body_exited"]
+[connection signal="body_entered" from="collector" to="." method="_on_collector_body_entered"]
+[connection signal="body_exited" from="collector" to="." method="_on_collector_body_exited"]

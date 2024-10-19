@@ -33,6 +33,7 @@ position = Vector2(1103, 405)
 [node name="Bloc2" parent="." instance=ExtResource("2_ahhrw")]
 
 [node name="Bloc3" parent="." instance=ExtResource("2_ahhrw")]
+position = Vector2(336, 400)
 
 [node name="ObjetInteractif2" parent="." node_paths=PackedStringArray("text", "audio") instance=ExtResource("3_1fy3i")]
 position = Vector2(984, 272)
@@ -59,7 +60,8 @@ metadata/_edit_group_ = true
 texture = ExtResource("4_6ffsc")
 
 [node name="HookableBloc" type="StaticBody2D" parent="ObjetInteractif2"]
-collision_layer = 2
+collision_layer = 34
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetInteractif2/HookableBloc"]
 shape = SubResource("CircleShape2D_ouag5")

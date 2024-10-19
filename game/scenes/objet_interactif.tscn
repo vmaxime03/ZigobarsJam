@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ba55d"]
 radius = 64.0
 
-[node name="ObjetInteractif" type="Node2D" node_paths=PackedStringArray("interactionArea") groups=["hookable"]]
+[node name="ObjetInteractif" type="Node2D" node_paths=PackedStringArray("interactionArea") groups=["aspirable", "hookable"]]
 script = ExtResource("1_qtc64")
 interactionArea = NodePath("InteractionArea")
 metadata/_edit_group_ = true

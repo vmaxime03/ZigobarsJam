@@ -1,17 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdxjvtv06syl3"]
+[gd_scene load_steps=4 format=3 uid="uid://cdxjvtv06syl3"]
 
+[ext_resource type="Script" path="res://scripts/blocs/bloc_recuperable.gd" id="1_40dh3"]
 [ext_resource type="Texture2D" uid="uid://sakcebvqwcn2" path="res://assets/art/temp_bloc.png" id="1_jd7hy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ouag5"]
 radius = 16.0
 
-[node name="Bloc" type="RigidBody2D"]
-position = Vector2(554, 135)
-collision_layer = 2
+[node name="StaticBody2D" type="StaticBody2D" groups=["aspirable", "dechetRecuperable"]]
+collision_layer = 34
+collision_mask = 67
+script = ExtResource("1_40dh3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("1_jd7hy")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ouag5")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_jd7hy")
+metadata/_edit_group_ = true

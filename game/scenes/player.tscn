@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://dgxyex6m3exjm"]
+[gd_scene load_steps=28 format=3 uid="uid://dgxyex6m3exjm"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_5785e"]
 [ext_resource type="Texture2D" uid="uid://u3yx35oaoe8s" path="res://assets/art/vaisseau/vaisseauBaseAllAnime.png" id="2_0udfh"]
 [ext_resource type="Texture2D" uid="uid://dl5epqqy5hdam" path="res://assets/art/vaisseau/teteVaisseau.png" id="3_03r80"]
 [ext_resource type="Texture2D" uid="uid://d25plol515f2w" path="res://assets/art/progress_under.png" id="4_rl1vn"]
+[ext_resource type="PackedScene" uid="uid://00dvf4im8tux" path="res://scenes/aspirateur.tscn" id="4_t4ctc"]
 [ext_resource type="Texture2D" uid="uid://qh6yl0nmi8w0" path="res://assets/art/progress_over.png" id="5_mlf7w"]
 [ext_resource type="Texture2D" uid="uid://mvamk8j3m4ja" path="res://assets/art/progress.png" id="6_wuw4j"]
 
@@ -142,14 +143,16 @@ _data = {
 "move": SubResource("Animation_qjcpm")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("carbBar", "interactButton", "body", "arm", "animation_tree") groups=["joueur"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("carbBar", "o2Bar", "interactButton", "body", "arm", "aspirateur", "animation_tree") groups=["joueur"]]
 collision_mask = 6
 script = ExtResource("1_5785e")
 carb = 1000
 carbBar = NodePath("Control/TextureProgressBar")
+o2Bar = NodePath("Control/TextureProgressBar2")
 interactButton = NodePath("Control/SelectButton")
 body = NodePath("body")
 arm = NodePath("arm")
+aspirateur = NodePath("arm/Aspirateur")
 animation_tree = NodePath("AnimationTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -164,14 +167,17 @@ metadata/_edit_group_ = true
 [node name="arm" type="Sprite2D" parent="."]
 texture = ExtResource("3_03r80")
 
+[node name="Aspirateur" parent="arm" node_paths=PackedStringArray("player") instance=ExtResource("4_t4ctc")]
+player = NodePath("../..")
+
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 3
 anchors_preset = 0
-offset_left = -82.0
-offset_top = -72.0
-offset_right = 88.0
-offset_bottom = 74.0
+offset_left = -85.0
+offset_top = -73.0
+offset_right = 85.0
+offset_bottom = 73.0
 metadata/_edit_group_ = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
@@ -186,6 +192,26 @@ offset_left = -16.0
 offset_top = -34.6
 offset_bottom = -18.6
 grow_horizontal = 0
+grow_vertical = 0
+fill_mode = 4
+texture_under = ExtResource("4_rl1vn")
+texture_over = ExtResource("5_mlf7w")
+texture_progress = ExtResource("6_wuw4j")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(1, 1, 0, 1)
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="Control"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+grow_horizontal = 2
 grow_vertical = 0
 fill_mode = 4
 texture_under = ExtResource("4_rl1vn")

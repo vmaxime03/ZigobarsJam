@@ -16,7 +16,7 @@ func compute_hook_pull(pull : Vector2, pullforce : int) -> void :
 
 func hook_pull_physics(delta : float):
     if (hooked) : 
-        position += hook_pull
+        position += hook_pull * delta
         hooked = false
 
     
