@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://gh25nvu75n3d"]
+
+[ext_resource type="AudioStream" uid="uid://cbuqnqe7i44yv" path="res://assets/audio/Voix/cassettes/Intro/intro.wav" id="1_ftnvn"]
+[ext_resource type="Script" path="res://scripts/menu/intro.gd" id="2_pp01d"]
+
+[node name="Intro" type="Node2D"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_ftnvn")
+script = ExtResource("2_pp01d")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 40
+text = "1 Avril 2053 : Bienvenue à vous équipe ZéphyrCosmos:
+Nettoyez l’espace des débris présents dans l’orbite
+ terrestre. Certains débris ont une utilité particulière et
+ peuvent être échangés contre de l’argent
+ selon leur valeur. Certains d'entre eux peuvent également
+ améliorer vos capacités. 
+"
