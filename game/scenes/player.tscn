@@ -144,7 +144,7 @@ _data = {
 "move": SubResource("Animation_qjcpm")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("carbBar", "o2Bar", "interactButton", "body", "arm", "aspirateur", "animation_tree") groups=["joueur"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("carbBar", "o2Bar", "interactButton", "body", "arm", "aspirateur") groups=["joueur"]]
 visibility_layer = 2
 collision_mask = 6
 script = ExtResource("1_5785e")
@@ -155,7 +155,6 @@ interactButton = NodePath("Control/SelectButton")
 body = NodePath("body")
 arm = NodePath("arm")
 aspirateur = NodePath("arm/Aspirateur")
-animation_tree = NodePath("AnimationTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5inrx")

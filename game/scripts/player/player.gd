@@ -15,10 +15,11 @@ extends CharacterBody2D
 @export var maxpower : int = 10
 @export var minpower : int = 1
 @export var o2 : float = 100
-@export var carb : int = 100
+@export var carb : int = 500
 @export var dashBaseCD : int = 5
 @export var dashCost : int = 30
 @export var DASH_VELOCITY : Vector2 = Vector2(300, 300)
+@export var argent : int = 0
 
 
 
@@ -34,8 +35,10 @@ extends CharacterBody2D
 @export var body : Sprite2D
 @export var arm : Sprite2D
 @export var aspirateur : Aspirateur
-@export var animation_tree : AnimationTree
-@onready var state_machine : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
+@export var body_animation_tree : AnimationTree
+var body_state_machine : AnimationNodeStateMachinePlayback = body_animation_tree.get("parameters/playback")
+@export var arm_animation_tree : AnimationTree
+var arm_state_machine : AnimationNodeStateMachinePlayback = arm_animation_tree.get("parameters/playback")
 
 var isObjetInteractifProche : bool = false
 var objetInteractifProche : ObjetInteractif = null
@@ -94,13 +97,13 @@ func _physics_process(delta: float) -> void:
 		carb -= 1
 
 		# jouer l'animation
-		state_machine.travel("move")
+		body_state_machine.travel("move")
 	else:
 		if (power > minpower): 
 			power-= 1
 
 		# jouer l'animation
-		state_machine.travel("idle")
+		body_state_machine.travel("idle")
 	
 
 
@@ -125,6 +128,10 @@ func _physics_process(delta: float) -> void:
 	if (aspirateur_enable):
 		aspirateur_action()
 	
+
+	if (aspirateur.actif) : arm_state_machine.travel("aspirer")
+	else : arm_state_machine.travel("idle")	
+
 	# actualiser la barre de carburant
 	_update_carb_bar()
 
@@ -135,6 +142,7 @@ func _physics_process(delta: float) -> void:
 	arm.rotation = atan2(mousePos.y - position.y, mousePos.x - position.x)
 	body.rotation = vel.angle() 
 	
+
 	#deplacement 
 	velocity = vel
 	move_and_slide()
@@ -143,11 +151,15 @@ func _physics_process(delta: float) -> void:
 	
 func aspirateur_action() -> void :
 	aspirateur.actif = Input.is_action_pressed("r_click")
+	
 		
 
 func brake_action():
 	if Input.is_action_pressed("space"):
 		vel *= 0.95
+
+		if (vel.length()>10):
+			carb -= 1
 
 # action dash
 func dash_action():
@@ -157,9 +169,9 @@ func dash_action():
 			dashCD = dashBaseCD
 			carb -= dashCost
 			vel += DASH_VELOCITY * dir.normalized()
-			state_machine.travel("dash")
+			body_state_machine.travel("dash")
 		else :
-			if (dashCD > 0) : dashCD-= 1
+			pass
 			#TODO son de manque de ressource
 
 		
@@ -197,7 +209,7 @@ func hook_physics() -> void:
 			var hookVector : Vector2 = hook.get_vector()
 		
 		
-			var effectivePullForce = HOOK_PULL_FORCE * hook.get_tension()
+			var effectivePullForce = HOOK_PULL_FORCE * hook.get_tension() ** 2
 			
 			vel += hookVector.normalized() * effectivePullForce
 			
