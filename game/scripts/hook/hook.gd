@@ -72,8 +72,7 @@ func _physics_process(delta: float) -> void :
 			delete()
 	# si l'objet est attirable, actualise le point du grapin
 	else : 
-		if (pullable) : 
-			position = to_global(fixedOn.position)/2
+		position = to_global(fixedOn.position)/2
 		rope.set_point_position(1, position)
 
 		# rotation de la point par rapport au joueur
