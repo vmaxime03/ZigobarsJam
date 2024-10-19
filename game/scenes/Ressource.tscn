@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh3bvelhv40a6"]
+[gd_scene load_steps=3 format=3 uid="uid://cylfiuo47y3el"]
 
 [ext_resource type="Script" path="res://scripts/objetInteractif/ressource.gd" id="1_1yd27"]
+[ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_dwwsg"]
 
 [node name="Ressource" type="Node2D"]
 script = ExtResource("1_1yd27")
+
+[node name="Bloc" parent="." instance=ExtResource("2_dwwsg")]
