@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwom00i764f3g"]
+
+[ext_resource type="Script" path="res://scripts/cassette/cassette_player.gd" id="1_v15jp"]
+
+[node name="CassettePlayer" type="AudioStreamPlayer2D"]
+script = ExtResource("1_v15jp")
