@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctfl2sf2oikup"]
+[gd_scene load_steps=15 format=3 uid="uid://ctfl2sf2oikup"]
 
 [ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="1_owex6"]
 [ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_ahhrw"]
-[ext_resource type="Texture2D" uid="uid://d25plol515f2w" path="res://assets/art/progress_under.png" id="2_bu18s"]
+[ext_resource type="Texture2D" uid="uid://ds8xcn0ubpi5g" path="res://assets/art/progress_under.png" id="2_bu18s"]
 [ext_resource type="PackedScene" uid="uid://bvgq4s58143o4" path="res://scenes/objet_interactif.tscn" id="3_1fy3i"]
-[ext_resource type="Texture2D" uid="uid://qh6yl0nmi8w0" path="res://assets/art/progress_over.png" id="3_ymwf3"]
-[ext_resource type="Texture2D" uid="uid://mvamk8j3m4ja" path="res://assets/art/progress.png" id="4_5usun"]
-[ext_resource type="Texture2D" uid="uid://6r2rua3pqkyq" path="res://assets/art/temp_bloc_interac.png" id="4_6ffsc"]
-[ext_resource type="AudioStream" uid="uid://dleomy834jsl4" path="res://assets/audio/file_example_MP3_700KB.mp3" id="4_xkht5"]
-[ext_resource type="Texture2D" uid="uid://d2w051yy44vm3" path="res://assets/art/progresso2.png" id="5_3ms3g"]
+[ext_resource type="Texture2D" uid="uid://crypabhsp8ma7" path="res://assets/art/progress_over.png" id="3_ymwf3"]
+[ext_resource type="Texture2D" uid="uid://5u6m8wgo820b" path="res://assets/art/progress.png" id="4_5usun"]
+[ext_resource type="Texture2D" uid="uid://cqw6l5b4viyw" path="res://assets/art/temp_bloc_interac.png" id="4_6ffsc"]
+[ext_resource type="AudioStream" uid="uid://bfq2l5i2oiqwg" path="res://assets/audio/file_example_MP3_700KB.mp3" id="4_xkht5"]
+[ext_resource type="Texture2D" uid="uid://do8xve08eyg73" path="res://assets/art/progresso2.png" id="5_3ms3g"]
+[ext_resource type="PackedScene" uid="uid://npvdu3uv6a1d" path="res://scenes/Arrièreplan.tscn" id="6_7yhbl"]
 [ext_resource type="Script" path="res://scripts/debuglabel.gd" id="6_wx8so"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_enott"]
@@ -21,6 +22,8 @@ custom_aabb = AABB(50, 50, 50, 0, 0, 0)
 radius = 16.0
 
 [node name="Debug" type="Node2D"]
+
+[node name="Arrièreplan" parent="." instance=ExtResource("6_7yhbl")]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 position = Vector2(575.75, 323.75)

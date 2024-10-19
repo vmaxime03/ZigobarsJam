@@ -2,7 +2,7 @@
 "BASE_SPEED": "Vector2(300, 300)",
 "DASH_VELOCITY": "Vector2(300, 300)",
 "HOOK_PULL_FORCE": "10",
-"argent": "350",
+"argent": "410",
 "aspi_force": "50",
 "aspi_range": "256",
 "aspirateur_enable": "true",
