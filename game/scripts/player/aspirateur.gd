@@ -47,7 +47,7 @@ func _on_collector_body_entered(body: Node2D) -> void:
 			n = n.get_parent()
 		
 		if (n != null and n.is_in_group("dechetRecuperable")):
-			print(n.recuperer())
+			player.argent += n.recuperer()
 
 
 func _on_collector_body_exited(body: Node2D) -> void:

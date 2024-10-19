@@ -1,12 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://dgxyex6m3exjm"]
+[gd_scene load_steps=37 format=3 uid="uid://dgxyex6m3exjm"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_5785e"]
 [ext_resource type="Texture2D" uid="uid://u3yx35oaoe8s" path="res://assets/art/vaisseau/vaisseauBaseAllAnime.png" id="2_0udfh"]
-[ext_resource type="Texture2D" uid="uid://dl5epqqy5hdam" path="res://assets/art/vaisseau/teteVaisseau.png" id="3_03r80"]
-[ext_resource type="Texture2D" uid="uid://d25plol515f2w" path="res://assets/art/progress_under.png" id="4_rl1vn"]
+[ext_resource type="Texture2D" uid="uid://mdgte4pcoayf" path="res://assets/art/vaisseau/teteVaisseau_full.png" id="3_hpksx"]
 [ext_resource type="PackedScene" uid="uid://00dvf4im8tux" path="res://scenes/aspirateur.tscn" id="4_t4ctc"]
-[ext_resource type="Texture2D" uid="uid://qh6yl0nmi8w0" path="res://assets/art/progress_over.png" id="5_mlf7w"]
-[ext_resource type="Texture2D" uid="uid://mvamk8j3m4ja" path="res://assets/art/progress.png" id="6_wuw4j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5inrx"]
 radius = 32.0
@@ -143,17 +140,106 @@ _data = {
 "move": SubResource("Animation_qjcpm")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("carbBar", "o2Bar", "interactButton", "body", "arm", "aspirateur", "animation_tree") groups=["joueur"]]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8qanm"]
+animation = &"aspirer"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_w2djy"]
+graph_offset = Vector2(-77.4989, -15.991)
+nodes/aspirer/node = SubResource("AnimationNodeAnimation_8qanm")
+nodes/aspirer/position = Vector2(140, 100)
+node_connections = [&"output", 0, &"aspirer"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ttcbn"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_w17gu"]
+graph_offset = Vector2(-115, 115)
+nodes/idle/node = SubResource("AnimationNodeAnimation_ttcbn")
+nodes/idle/position = Vector2(140, 160)
+node_connections = [&"output", 0, &"idle"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_14i4k"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kl6am"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_308vd"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_13k7l"]
+states/Start/position = Vector2(209, 100)
+states/aspirer/node = SubResource("AnimationNodeBlendTree_w2djy")
+states/aspirer/position = Vector2(553, 39)
+states/idle/node = SubResource("AnimationNodeBlendTree_w17gu")
+states/idle/position = Vector2(403, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_14i4k"), "idle", "aspirer", SubResource("AnimationNodeStateMachineTransition_kl6am"), "aspirer", "idle", SubResource("AnimationNodeStateMachineTransition_308vd")]
+
+[sub_resource type="Animation" id="Animation_a0nfe"]
+resource_name = "idle"
+length = 1.0
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_fhf74"]
+resource_name = "aspirer"
+length = 0.375004
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_jgc6a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1pcbv"]
+_data = {
+"RESET": SubResource("Animation_jgc6a"),
+"aspirer": SubResource("Animation_fhf74"),
+"idle": SubResource("Animation_a0nfe")
+}
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("body", "arm", "aspirateur", "body_animation_tree", "arm_animation_tree") groups=["joueur"]]
 collision_mask = 6
 script = ExtResource("1_5785e")
 carb = 1000
-carbBar = NodePath("Control/TextureProgressBar")
-o2Bar = NodePath("Control/TextureProgressBar2")
-interactButton = NodePath("Control/SelectButton")
 body = NodePath("body")
 arm = NodePath("arm")
 aspirateur = NodePath("arm/Aspirateur")
-animation_tree = NodePath("AnimationTree")
+body_animation_tree = NodePath("bodyAnimeTree")
+arm_animation_tree = NodePath("armAnimTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5inrx")
@@ -165,72 +251,27 @@ hframes = 13
 metadata/_edit_group_ = true
 
 [node name="arm" type="Sprite2D" parent="."]
-texture = ExtResource("3_03r80")
+texture = ExtResource("3_hpksx")
+hframes = 4
+frame = 3
 
 [node name="Aspirateur" parent="arm" node_paths=PackedStringArray("player") instance=ExtResource("4_t4ctc")]
 player = NodePath("../..")
 
-[node name="Control" type="Control" parent="."]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 3
-anchors_preset = 0
-offset_left = -85.0
-offset_top = -73.0
-offset_right = 85.0
-offset_bottom = 73.0
-metadata/_edit_group_ = true
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.97
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_left = -16.0
-offset_top = -34.6
-offset_bottom = -18.6
-grow_horizontal = 0
-grow_vertical = 0
-fill_mode = 4
-texture_under = ExtResource("4_rl1vn")
-texture_over = ExtResource("5_mlf7w")
-texture_progress = ExtResource("6_wuw4j")
-tint_under = Color(0, 0, 0, 1)
-tint_progress = Color(1, 1, 0, 1)
-
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="Control"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -16.0
-offset_right = 8.0
-grow_horizontal = 2
-grow_vertical = 0
-fill_mode = 4
-texture_under = ExtResource("4_rl1vn")
-texture_over = ExtResource("5_mlf7w")
-texture_progress = ExtResource("6_wuw4j")
-tint_under = Color(0, 0, 0, 1)
-tint_progress = Color(1, 1, 0, 1)
-
-[node name="SelectButton" type="Button" parent="Control"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "INTERACT"
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="bodyAnimeTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_f6ce5")
-anim_player = NodePath("../AnimationPlayer")
+anim_player = NodePath("../bodyAnimePlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="bodyAnimePlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4aiqe")
+}
+
+[node name="armAnimTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_13k7l")
+anim_player = NodePath("../armAnimPlayer")
+
+[node name="armAnimPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1pcbv")
 }
