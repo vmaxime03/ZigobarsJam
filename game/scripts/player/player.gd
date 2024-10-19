@@ -24,9 +24,9 @@ extends CharacterBody2D
 
 
 @export_group("AFFICHAGE STATS")
-@export var carbBar : TextureProgressBar
-@export var o2Bar : TextureProgressBar
-@export var interactButton : Button
+@onready var carbBar : TextureProgressBar = preload("res://scenes/texture_progress_bar.tscn").instantiate()
+@onready var o2Bar : TextureProgressBar = preload("res://scenes/texture_progress_bar_2.tscn").instantiate()
+@onready var interactButton : Button = preload("res://scenes/select_button.tscn").instantiate()
 
 
 @onready var power : int = minpower
