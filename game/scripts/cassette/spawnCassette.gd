@@ -5,7 +5,6 @@ var player
 
 
 @export var audioPlayer : PackedScene
-var audioPlayerList : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
