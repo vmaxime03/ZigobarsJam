@@ -170,7 +170,7 @@ func _physics_process(delta: float) -> void:
 	# puissance du moteur (temps de pressage de la touche)
 	var p : float = 2 * (float(power) / maxpower )
 	
-	if (dir != Vector2.ZERO):
+	if (dir != Vector2.ZERO && carb>0): 
 		# deplacer le perso
 		vel += dir * BASE_SPEED * delta * p
 		if (power < maxpower):

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdxjvtv06syl3"]
 
 [ext_resource type="Script" path="res://scripts/blocs/bloc_recuperable.gd" id="1_40dh3"]
-[ext_resource type="Texture2D" uid="uid://c6x0yyhnymjcg" path="res://assets/art/temp_bloc.png" id="1_jd7hy"]
+[ext_resource type="Texture2D" uid="uid://eiim2utbr86p" path="res://assets/art/temp_bloc.png" id="1_jd7hy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ouag5"]
 radius = 16.0

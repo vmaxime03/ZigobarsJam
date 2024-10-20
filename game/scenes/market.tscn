@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://11761as7of2l"]
 
 [ext_resource type="Script" path="res://scripts/market/marketnode.gd" id="1_w04sm"]
-[ext_resource type="Texture2D" uid="uid://c4ybihjuwhbx5" path="res://assets/art/vaisseau/vaisseauMere.png" id="2_j5jxx"]
+[ext_resource type="Texture2D" uid="uid://cc500pobyhdkh" path="res://assets/art/vaisseau/vaisseauMere.png" id="2_j5jxx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mu8a7"]
 radius = 95.0

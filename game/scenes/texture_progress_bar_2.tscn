@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://da5tfwjojocph"]
+[gd_scene load_steps=4 format=3 uid="uid://br4lieepn1qi0"]
 
-[ext_resource type="Texture2D" uid="uid://d01uyppkb0x6p" path="res://assets/art/progress_under.png" id="1_py0nu"]
-[ext_resource type="Texture2D" uid="uid://bwkh3705w1cb5" path="res://assets/art/progress_over.png" id="2_75u5i"]
-[ext_resource type="Texture2D" uid="uid://e3smsef1qp54" path="res://assets/art/progress.png" id="3_ehllw"]
+[ext_resource type="Texture2D" uid="uid://ds8xcn0ubpi5g" path="res://assets/art/progress_under.png" id="1_py0nu"]
+[ext_resource type="Texture2D" uid="uid://crypabhsp8ma7" path="res://assets/art/progress_over.png" id="2_75u5i"]
+[ext_resource type="Texture2D" uid="uid://5u6m8wgo820b" path="res://assets/art/progress.png" id="3_ehllw"]
 
 [node name="TextureProgressBar2" type="TextureProgressBar"]
 custom_minimum_size = Vector2(16, 16)
