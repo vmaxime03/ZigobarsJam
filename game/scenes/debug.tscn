@@ -1,16 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctfl2sf2oikup"]
+[gd_scene load_steps=11 format=3 uid="uid://ctfl2sf2oikup"]
 
 [ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="1_owex6"]
 [ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_ahhrw"]
-[ext_resource type="Texture2D" uid="uid://ds8xcn0ubpi5g" path="res://assets/art/progress_under.png" id="2_bu18s"]
 [ext_resource type="PackedScene" uid="uid://bvgq4s58143o4" path="res://scenes/objet_interactif.tscn" id="3_1fy3i"]
-[ext_resource type="Texture2D" uid="uid://crypabhsp8ma7" path="res://assets/art/progress_over.png" id="3_ymwf3"]
-[ext_resource type="Texture2D" uid="uid://5u6m8wgo820b" path="res://assets/art/progress.png" id="4_5usun"]
 [ext_resource type="Texture2D" uid="uid://cqw6l5b4viyw" path="res://assets/art/temp_bloc_interac.png" id="4_6ffsc"]
 [ext_resource type="AudioStream" uid="uid://bfq2l5i2oiqwg" path="res://assets/audio/file_example_MP3_700KB.mp3" id="4_xkht5"]
-[ext_resource type="Texture2D" uid="uid://do8xve08eyg73" path="res://assets/art/progresso2.png" id="5_3ms3g"]
 [ext_resource type="PackedScene" uid="uid://npvdu3uv6a1d" path="res://scenes/Arrièreplan.tscn" id="6_7yhbl"]
-[ext_resource type="Script" path="res://scripts/debuglabel.gd" id="6_wx8so"]
 [ext_resource type="PackedScene" uid="uid://11761as7of2l" path="res://scenes/market.tscn" id="12_4r8qu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_enott"]
@@ -38,70 +33,7 @@ mesh = SubResource("BoxMesh_evod2")
 [node name="Player" parent="." instance=ExtResource("1_owex6")]
 position = Vector2(549, 270)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="Control" type="Control" parent="Player/Camera2D"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 3
-anchors_preset = 0
-offset_left = -581.0
-offset_top = -326.0
-offset_right = 571.0
-offset_bottom = 322.0
-metadata/_edit_group_ = true
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Player/Camera2D/Control"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-offset_left = 144.0
-offset_top = 464.0
-offset_right = 160.0
-offset_bottom = 480.0
-scale = Vector2(10, 10)
-fill_mode = 4
-texture_under = ExtResource("2_bu18s")
-texture_over = ExtResource("3_ymwf3")
-texture_progress = ExtResource("4_5usun")
-
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="Player/Camera2D/Control"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -552.0
-offset_top = -304.0
-offset_right = -536.0
-offset_bottom = -288.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(10, 10)
-fill_mode = 4
-texture_under = ExtResource("2_bu18s")
-texture_over = ExtResource("3_ymwf3")
-texture_progress = ExtResource("5_3ms3g")
-
-[node name="SelectButton" type="Button" parent="Player/Camera2D/Control"]
-layout_mode = 0
-offset_left = 224.0
-offset_top = 528.0
-offset_right = 308.0
-offset_bottom = 559.0
-text = "INTERACT"
-
-[node name="Label" type="Label" parent="Player/Camera2D/Control" node_paths=PackedStringArray("player")]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-script = ExtResource("6_wx8so")
-player = NodePath("../../..")
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 
 [node name="Bloc" parent="." instance=ExtResource("2_ahhrw")]
 position = Vector2(1103, 405)

@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c43oispymu2rt"]
+[gd_scene load_steps=4 format=3 uid="uid://d25y4whwf4ukb"]
 
 [ext_resource type="Script" path="res://scripts/Map/tile_map_layer.gd" id="1_0l43v"]
 [ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="2_lgw4j"]
-[ext_resource type="PackedScene" uid="uid://bt0oqrg3w11ey" path="res://scenes/Arrièreplan.tscn" id="3_xtojo"]
+[ext_resource type="PackedScene" uid="uid://npvdu3uv6a1d" path="res://scenes/Arrièreplan.tscn" id="3_xtojo"]
 
 [node name="Node2D" type="Node2D"]
 

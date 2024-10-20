@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://curt2oj7vkuv4"]
+[gd_scene load_steps=5 format=3 uid="uid://bt21v7j0g436h"]
 
 [ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="1_gcax8"]
 [ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_10nlu"]
 [ext_resource type="PackedScene" uid="uid://bvgq4s58143o4" path="res://scenes/objet_interactif.tscn" id="3_syvh1"]
-[ext_resource type="AudioStream" uid="uid://bok2e7d4mkakk" path="res://assets/audio/Musics/Main_theme.wav" id="4_sw5oe"]
+[ext_resource type="AudioStream" uid="uid://8vcx57ao2ynw" path="res://assets/audio/Musics/Main_theme.wav" id="4_sw5oe"]
 
 [node name="DebugPlayerougobgzeoubzeofbz" type="Node2D"]
 position = Vector2(-2, 5)
