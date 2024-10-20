@@ -1,9 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdq0rsqa5860b"]
+[gd_scene load_steps=22 format=3 uid="uid://bdq0rsqa5860b"]
 
-[ext_resource type="Texture2D" uid="uid://3ij7fjgcwq2f" path="res://assets/art/background/market.jpg" id="1_8xbia"]
-[ext_resource type="Texture2D" uid="uid://bke7wrly5a05j" path="res://assets/art/iconeMarket/iconeEssence.png" id="3_tjhlh"]
-[ext_resource type="Texture2D" uid="uid://rpfhfcmvfy4d" path="res://assets/art/iconeMarket/iconeGrapin.png" id="4_1g43b"]
-[ext_resource type="Texture2D" uid="uid://dwaob2ylw76ji" path="res://assets/art/iconeMarket/iconeO2.png" id="5_6fac3"]
+[ext_resource type="Texture2D" uid="uid://fxx03p0y5u74" path="res://assets/art/background/market.jpg" id="1_8xbia"]
+[ext_resource type="Texture2D" uid="uid://dtmhwo6t7j4k3" path="res://assets/art/iconeMarket/coins.png" id="2_6hbos"]
+[ext_resource type="Script" path="res://scripts/market/money.gd" id="2_y82ai"]
+[ext_resource type="Script" path="res://scripts/market/animated_sprite_2d.gd" id="3_csfgc"]
+[ext_resource type="Texture2D" uid="uid://bhkamwq5onqai" path="res://assets/art/iconeMarket/iconeEssence.png" id="3_tjhlh"]
+[ext_resource type="Script" path="res://scripts/market/carburant.gd" id="4_0ks3e"]
+[ext_resource type="Texture2D" uid="uid://ck06nic4l3tdj" path="res://assets/art/iconeMarket/iconeGrapin.png" id="4_1g43b"]
+[ext_resource type="Script" path="res://scripts/market/prixcarburant.gd" id="4_vs36f"]
+[ext_resource type="Texture2D" uid="uid://bl4t1vkt8xx40" path="res://assets/art/iconeMarket/iconeO2.png" id="5_6fac3"]
+[ext_resource type="Script" path="res://scripts/market/prixgrapin.gd" id="6_nijso"]
+[ext_resource type="Script" path="res://scripts/market/grapin.gd" id="7_68vb5"]
+[ext_resource type="Script" path="res://scripts/market/node.gd" id="7_blmx1"]
+[ext_resource type="Script" path="res://scripts/market/prixO2.gd" id="8_gfp4x"]
+[ext_resource type="Script" path="res://scripts/market/oxygene.gd" id="10_258i0"]
 
 [sub_resource type="GDScript" id="GDScript_8gnb3"]
 script/source = "extends Control
@@ -20,12 +30,60 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_carburant_pressed() -> void:
-	pass # Replace with function body.
-
-
 #fonction 
 "
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g8ov"]
+atlas = ExtResource("2_6hbos")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypxyx"]
+atlas = ExtResource("2_6hbos")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hye3"]
+atlas = ExtResource("2_6hbos")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htoad"]
+atlas = ExtResource("2_6hbos")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn7uv"]
+atlas = ExtResource("2_6hbos")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m1r1x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g8ov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypxyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hye3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htoad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hye3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypxyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g8ov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn7uv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
 
 [node name="MarketGui" type="Control"]
 layout_mode = 3
@@ -62,12 +120,23 @@ grow_vertical = 2
 theme_override_constants/separation = 100
 metadata/_edit_use_anchors_ = true
 
-[node name="money" type="Label" parent="TextureRect/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect/VBoxContainer/HBoxContainer2"]
+position = Vector2(-34, 35.5)
+sprite_frames = SubResource("SpriteFrames_m1r1x")
+script = ExtResource("3_csfgc")
+
+[node name="money" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("don")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Money = "
 horizontal_alignment = 1
+script = ExtResource("2_y82ai")
+don = NodePath("../../../../donnees")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
@@ -76,7 +145,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_constants/separation = 150
 
-[node name="carburant" type="Button" parent="TextureRect/VBoxContainer/HBoxContainer"]
+[node name="carburant" type="Button" parent="TextureRect/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("don")]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -86,8 +155,10 @@ icon = ExtResource("3_tjhlh")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+script = ExtResource("4_0ks3e")
+don = NodePath("../../../../donnees")
 
-[node name="prix" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/carburant"]
+[node name="prix" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/carburant" node_paths=PackedStringArray("don")]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 1
 anchors_preset = -1
@@ -97,8 +168,10 @@ offset_right = 242.0
 offset_bottom = 35.0
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("4_vs36f")
+don = NodePath("../../../../../donnees")
 
-[node name="grapin" type="Button" parent="TextureRect/VBoxContainer/HBoxContainer"]
+[node name="grapin" type="Button" parent="TextureRect/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("don")]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -108,8 +181,10 @@ icon = ExtResource("4_1g43b")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+script = ExtResource("7_68vb5")
+don = NodePath("../../../../donnees")
 
-[node name="prix" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/grapin"]
+[node name="prix" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/grapin" node_paths=PackedStringArray("don")]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 1
 anchors_preset = -1
@@ -119,8 +194,10 @@ offset_right = 240.0
 offset_bottom = 35.0
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("6_nijso")
+don = NodePath("../../../../../donnees")
 
-[node name="oxygene" type="Button" parent="TextureRect/VBoxContainer/HBoxContainer"]
+[node name="oxygene" type="Button" parent="TextureRect/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("don")]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -130,8 +207,10 @@ icon = ExtResource("5_6fac3")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+script = ExtResource("10_258i0")
+don = NodePath("../../../../donnees")
 
-[node name="prix" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/oxygene"]
+[node name="prix" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/oxygene" node_paths=PackedStringArray("don")]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 1
 anchors_preset = -1
@@ -141,5 +220,13 @@ offset_right = 246.0
 offset_bottom = 35.0
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("8_gfp4x")
+don = NodePath("../../../../../donnees")
 
-[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/carburant" to="." method="_on_carburant_pressed"]
+[node name="donnees" type="Node" parent="."]
+script = ExtResource("7_blmx1")
+save_file = "res://data/save0.txt"
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/carburant" to="TextureRect/VBoxContainer/HBoxContainer/carburant" method="_on_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/grapin" to="TextureRect/VBoxContainer/HBoxContainer/grapin" method="_on_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/oxygene" to="TextureRect/VBoxContainer/HBoxContainer/oxygene" method="_on_pressed"]

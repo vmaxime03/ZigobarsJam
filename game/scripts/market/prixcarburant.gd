@@ -1,16 +1,15 @@
-extends StaticBody2D
-
+extends Label
+@export var don : Donnees
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	get_tree().call_group("joueur", "save_to_file")
-	
+	var niv = don.get_data("maxcarb")
+	if niv == 1000:
+		text = "niveau max"
+	else :
+		text = str(niv * 4) + "$"
