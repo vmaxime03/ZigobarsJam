@@ -219,6 +219,8 @@ func _physics_process(delta: float) -> void:
 	o2 -= delta
 	_update_o2_bar()
 	
+
+
 	# on gere les rotation des sprite en fonction de la souris et de la velocité
 	arm.rotation = atan2(mousePos.y - position.y, mousePos.x - position.x)
 	body.rotation = vel.angle() 
@@ -297,7 +299,7 @@ func hook_physics() -> void:
 			
 			vel += hookVector.normalized() * effectivePullForce
 			
-			if (hook.pullable) :
+			if (hook.pullable && hook.fixedOn != null) :
 				hook.fixedOn.compute_hook_pull(hookVector, effectivePullForce * vel.length())
 
 

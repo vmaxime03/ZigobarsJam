@@ -1,45 +1,48 @@
 extends TileMapLayer
+
+
 @export var player : Player
-@export var concentrationDechet : int = 1
-# Called when the node enters the scene tree for the first time.
-@onready var r = preload("res://scenes/Ressource.tscn")
-@onready var rr = preload("res://scenes/RessourceRare.tscn")
+@export var market : Node2D
+
+
+@onready var r = preload("res://scenes/ressource_fix.tscn")
+@onready var rr = preload("res://scenes/ressource_rare_fix.tscn")
+
+@export var tileSize = 100
+@export var longueur = 2000
+@export var hauteur = 2000
+
+
 func _ready() -> void:
-	generate_map(player.position)
+	generate_map()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
-func generate_map(position):
-	var player_pos = local_to_map(position)
-	var longueur = 1200
-	var hauteur = 650
-	var pos_x = player_pos.x
-	var pos_y = player_pos.y
-	var x1 =-player.carb-longueur
-	var y1 =-player.carb-hauteur
-	while(x1<=player.carb+longueur):
-		while(y1<=player.carb+hauteur):
-			if(concentrationDechet*1> RandomNumberGenerator.new().randi_range(0,concentrationDechet*10)):
-				var x= RandomNumberGenerator.new().randi_range(0,50)
-				var y= RandomNumberGenerator.new().randi_range(0,50)
-				if(x>pos_x+10||x<pos_x-10):
-					if(y>pos_y+10||y<pos_y-10):
-						var rare = randf_range(0,1)*(x1+x+y1+y)/20000
-						var node
-						if(rare>0.9):
-							node = rr.instantiate()
-							print("crash1")
-						else:
-							node = r.instantiate()
-						node.position.x = x1+x;
-						node.position.y = y1+y;
-						add_child(node)
-			y1 += 50
-		y1 = -player.carb-hauteur
-		x1 +=50
-		
-
-	
+func generate_map():
+	var x1 = -longueur
+	var y1 = -hauteur
+	while(x1<=longueur):
+		while(y1<=hauteur):
+			if (RandomNumberGenerator.new().randi_range(0, 5)==0):
+				var x= RandomNumberGenerator.new().randi_range(x1,x1+tileSize)
+				var y= RandomNumberGenerator.new().randi_range(y1, y1+tileSize)
+				if((x>player.position.x+256 || x<player.position.x-256)&&
+				(y>player.position.y+256 || y<player.position.y-256)&&
+				(x>market.position.x+256 || x<market.position.x-256)&&
+				(y>market.position.y+256 || y<market.position.y-256)
+				):
+					print("obfzibfhezfofkihebz")
+					var rare = randf_range(0,1)
+					var node : Node2D
+					if(rare>0.95):
+						print("rare")
+						node = rr.instantiate()
+					else:
+						print("normal")
+						node = r.instantiate()
+					print(node.name)
+					add_sibling(node)
+					node.position.x = x1+x;
+					node.position.y = y1+y;
+			y1 += tileSize
+		y1 = -hauteur
+		x1 +=tileSize

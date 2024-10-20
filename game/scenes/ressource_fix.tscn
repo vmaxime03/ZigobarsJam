@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciyx7hhnthmek"]
+
+[ext_resource type="Script" path="res://scripts/blocs/ressource_fix.gd" id="1_nb7fy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ouag5"]
+radius = 16.0
+
+[node name="asteroide" type="StaticBody2D" node_paths=PackedStringArray("sprite") groups=["aspirable", "dechetRecuperable"]]
+collision_layer = 162
+collision_mask = 3
+script = ExtResource("1_nb7fy")
+sprite = NodePath("Sprite2D2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ouag5")
+metadata/_edit_group_ = true

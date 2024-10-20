@@ -36,6 +36,8 @@ func _on_aspi_body_entered(body: Node2D) -> void:
 	
 	if (n != null and n.is_in_group("aspirable")):
 		aAspirer.get_or_add(body.get_instance_id(), n)
+		
+	
 	
 
 
@@ -48,6 +50,8 @@ func _on_collector_body_entered(body: Node2D) -> void:
 		
 		if (n != null and n.is_in_group("dechetRecuperable")):
 			player.argent += n.recuperer()
+			
+		print(n.name)
 
 
 func _on_collector_body_exited(body: Node2D) -> void:

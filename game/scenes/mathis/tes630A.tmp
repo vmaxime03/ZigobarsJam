@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://djjadksk6f054"]
+
+[ext_resource type="Script" path="res://scenes/mathis/tile_map_layer.gd" id="1_7md10"]
+[ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="2_d11la"]
+
+[node name="Test" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+script = ExtResource("1_7md10")
+
+[node name="Player" parent="." instance=ExtResource("2_d11la")]

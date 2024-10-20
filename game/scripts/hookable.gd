@@ -14,13 +14,11 @@ func compute_hook_pull(pull : Vector2, pullforce : int) -> void :
 	hook_pull = -pull.normalized() * pullforce/10
 
 
-func hook_pull_physics(delta : float):
-	if (hooked) : 
-		position += hook_pull * delta
-		hooked = false
 
 	
 func _physics_process(delta: float) -> void:
-	hook_pull_physics(delta)
+	if (hooked) : 
+		position += hook_pull * delta
+		hooked = false
 
 	

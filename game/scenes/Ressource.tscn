@@ -1,14 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cylfiuo47y3el"]
+[gd_scene load_steps=3 format=3 uid="uid://q6ymhe2lyh3g"]
 
 [ext_resource type="Script" path="res://scripts/objetInteractif/ressource.gd" id="1_1yd27"]
 [ext_resource type="PackedScene" uid="uid://cdxjvtv06syl3" path="res://scenes/bloc.tscn" id="2_dwwsg"]
 
 [node name="Ressource" type="Node2D"]
 script = ExtResource("1_1yd27")
+metadata/_edit_group_ = true
 
-[node name="Bloc" parent="." instance=ExtResource("2_dwwsg")]
-position = Vector2(554, 135)
-collision_layer = 2
-collision_mask = 1
+[node name="Bloc" parent="." groups=["aspirable"] instance=ExtResource("2_dwwsg")]
 script = null
 metadata/_edit_group_ = true

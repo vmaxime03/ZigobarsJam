@@ -89,6 +89,7 @@ l_maj={
 2d_physics/layer_5="aspirateur"
 2d_physics/layer_6="aspirable"
 2d_physics/layer_7="pullable"
+2d_physics/layer_9="market"
 
 [physics]
 

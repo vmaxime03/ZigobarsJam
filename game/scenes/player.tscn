@@ -1,9 +1,14 @@
-[gd_scene load_steps=37 format=3 uid="uid://dgxyex6m3exjm"]
+[gd_scene load_steps=42 format=3 uid="uid://dgxyex6m3exjm"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_5785e"]
-[ext_resource type="Texture2D" uid="uid://by5ikmqja00gl" path="res://assets/art/vaisseau/vaisseauBaseAllAnime.png" id="2_0udfh"]
-[ext_resource type="Texture2D" uid="uid://d3iq04qy3dnl0" path="res://assets/art/vaisseau/teteVaisseau_full.png" id="3_hpksx"]
+[ext_resource type="Texture2D" uid="uid://u3yx35oaoe8s" path="res://assets/art/vaisseau/vaisseauBaseAllAnime.png" id="2_0udfh"]
+[ext_resource type="Texture2D" uid="uid://mdgte4pcoayf" path="res://assets/art/vaisseau/teteVaisseau_full.png" id="3_hpksx"]
+[ext_resource type="Texture2D" uid="uid://d25plol515f2w" path="res://assets/art/progress_under.png" id="4_rl1vn"]
 [ext_resource type="PackedScene" uid="uid://00dvf4im8tux" path="res://scenes/aspirateur.tscn" id="4_t4ctc"]
+[ext_resource type="Texture2D" uid="uid://qh6yl0nmi8w0" path="res://assets/art/progress_over.png" id="5_mlf7w"]
+[ext_resource type="Texture2D" uid="uid://mvamk8j3m4ja" path="res://assets/art/progress.png" id="6_wuw4j"]
+[ext_resource type="Texture2D" uid="uid://d2w051yy44vm3" path="res://assets/art/progresso2.png" id="8_fyt5v"]
+[ext_resource type="Script" path="res://scripts/debuglabel.gd" id="9_jmlfm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5inrx"]
 radius = 32.0
@@ -230,10 +235,13 @@ _data = {
 "idle": SubResource("Animation_a0nfe")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("body", "arm", "aspirateur", "body_animation_tree", "arm_animation_tree") groups=["joueur"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("carbBar", "o2Bar", "interactButton", "body", "arm", "aspirateur", "body_animation_tree", "arm_animation_tree") groups=["joueur"]]
 collision_mask = 262
 script = ExtResource("1_5785e")
 save_file = "res://data/save0.txt"
+carbBar = NodePath("Camera2D/Control/TextureProgressBar")
+o2Bar = NodePath("Camera2D/Control/TextureProgressBar2")
+interactButton = NodePath("Camera2D/Control/SelectButton")
 body = NodePath("body")
 arm = NodePath("arm")
 aspirateur = NodePath("arm/Aspirateur")
@@ -274,3 +282,70 @@ anim_player = NodePath("../armAnimPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_1pcbv")
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Control" type="Control" parent="Camera2D"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -573.0
+offset_top = -326.0
+offset_right = 579.0
+offset_bottom = 322.0
+metadata/_edit_group_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Camera2D/Control"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+offset_left = 144.0
+offset_top = 464.0
+offset_right = 160.0
+offset_bottom = 480.0
+scale = Vector2(10, 10)
+fill_mode = 4
+texture_under = ExtResource("4_rl1vn")
+texture_over = ExtResource("5_mlf7w")
+texture_progress = ExtResource("6_wuw4j")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="Camera2D/Control"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -552.0
+offset_top = -304.0
+offset_right = -536.0
+offset_bottom = -288.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(10, 10)
+fill_mode = 4
+texture_under = ExtResource("4_rl1vn")
+texture_over = ExtResource("5_mlf7w")
+texture_progress = ExtResource("8_fyt5v")
+
+[node name="SelectButton" type="Button" parent="Camera2D/Control"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 528.0
+offset_right = 308.0
+offset_bottom = 559.0
+text = "INTERACT"
+
+[node name="Label" type="Label" parent="Camera2D/Control" node_paths=PackedStringArray("player")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("9_jmlfm")
+player = NodePath("../../..")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]

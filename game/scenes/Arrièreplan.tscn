@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://npvdu3uv6a1d"]
+[gd_scene load_steps=4 format=3 uid="uid://bt0oqrg3w11ey"]
 
-[ext_resource type="Texture2D" uid="uid://g3kqsnov88tu" path="res://assets/art/background/terre.png" id="1_xeyeg"]
-[ext_resource type="Texture2D" uid="uid://b0gnmf5gh5v" path="res://assets/art/background/istockphoto-1442000322-170667a.jpg" id="2_ylmo5"]
+[ext_resource type="Texture2D" uid="uid://cwj1fcqj6pb4d" path="res://assets/art/background/terre.png" id="1_xeyeg"]
+[ext_resource type="Texture2D" uid="uid://dfphlulfvm3qs" path="res://assets/art/background/istockphoto-1442000322-170667a.jpg" id="2_ylmo5"]
 
 [sub_resource type="GDScript" id="GDScript_xaqdo"]
 script/source = "extends ParallaxLayer

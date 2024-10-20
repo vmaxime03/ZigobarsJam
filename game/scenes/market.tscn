@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://11761as7of2l"]
+[gd_scene load_steps=4 format=3 uid="uid://dtvvasinqjniw"]
 
 [ext_resource type="Script" path="res://scripts/market/marketnode.gd" id="1_w04sm"]
-[ext_resource type="Texture2D" uid="uid://c4ybihjuwhbx5" path="res://assets/art/vaisseau/vaisseauMere.png" id="2_j5jxx"]
+[ext_resource type="Texture2D" uid="uid://bsbgq7wcnw8jl" path="res://assets/art/vaisseau/vaisseauMere.png" id="2_j5jxx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mu8a7"]
 radius = 95.0
 height = 346.0
 
 [node name="Market" type="StaticBody2D"]
-collision_layer = 256
+collision_layer = 258
+collision_mask = 9
 script = ExtResource("1_w04sm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

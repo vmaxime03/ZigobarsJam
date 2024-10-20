@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cylfiuo47y3el"]
+
+[ext_resource type="Script" path="res://scripts/objetInteractif/ressource.gd" id="1_1yd27"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_83gqn"]
+
+[node name="Ressource" type="Node2D" groups=["aspirable", "dechetRecuperable", "hookable"]]
+script = ExtResource("1_1yd27")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 34
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_83gqn")

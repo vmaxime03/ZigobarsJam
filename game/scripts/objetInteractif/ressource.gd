@@ -1,4 +1,3 @@
-class_name Ressource
 extends ObjetInteractif
 
 const asteroid = 0;
@@ -22,20 +21,29 @@ func _ready() -> void:
 		possede_boite_noire = true
 	else:
 		possede_boite_noire = false
+
+	var sprite := Sprite2D.new()
+	
 	match type:
 		0:
 			if (rare):
-				get_child(0).get_child(0).texture = ResourceLoader.load("res://assets/art/dechets/asteroidGold.png")
+				sprite.texture = ResourceLoader.load("res://assets/art/dechets/asteroidGold.png")
 			elif(randi_range(0,1)==0): 
-				get_child(0).get_child(0).texture = ResourceLoader.load("res://assets/art/dechets/asteroide2.png")
+				sprite.texture = ResourceLoader.load("res://assets/art/dechets/asteroide2.png")
 			else:
-				get_child(0).get_child(0).texture = ResourceLoader.load("res://assets/art/dechets/asteroide1.png")
+				sprite.texture = ResourceLoader.load("res://assets/art/dechets/asteroide1.png")
 		1:
 			if(randi_range(0,1)==0):
-				get_child(0).get_child(0).texture = ResourceLoader.load("res://assets/art/dechets/debris1.png")
+				sprite.texture = ResourceLoader.load("res://assets/art/dechets/debris1.png")
 			else:
-				get_child(0).get_child(0).texture = ResourceLoader.load("res://assets/art/dechets/debris2.png")
-			
+				sprite.texture = ResourceLoader.load("res://assets/art/dechets/debris2.png")
+	
+	add_child(sprite)
+
+	var n = self
+	while (n.get_child_count()> 0):
+		print(n.name, n.position, to_local(n.position), to_global(n.position))
+		n = n.get_child(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
