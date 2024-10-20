@@ -1,8 +1,8 @@
 [gd_scene load_steps=37 format=3 uid="uid://dgxyex6m3exjm"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_5785e"]
-[ext_resource type="Texture2D" uid="uid://b00sqiglndv53" path="res://assets/art/vaisseau/vaisseauBaseAllAnime.png" id="2_0udfh"]
-[ext_resource type="Texture2D" uid="uid://co7gp0mjjnvj" path="res://assets/art/vaisseau/teteVaisseau_full.png" id="3_hpksx"]
+[ext_resource type="Texture2D" uid="uid://by5ikmqja00gl" path="res://assets/art/vaisseau/vaisseauBaseAllAnime.png" id="2_0udfh"]
+[ext_resource type="Texture2D" uid="uid://d3iq04qy3dnl0" path="res://assets/art/vaisseau/teteVaisseau_full.png" id="3_hpksx"]
 [ext_resource type="PackedScene" uid="uid://00dvf4im8tux" path="res://scenes/aspirateur.tscn" id="4_t4ctc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5inrx"]
@@ -231,7 +231,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("body", "arm", "aspirateur", "body_animation_tree", "arm_animation_tree") groups=["joueur"]]
-collision_mask = 6
+collision_mask = 262
 script = ExtResource("1_5785e")
 save_file = "res://data/save0.txt"
 body = NodePath("body")

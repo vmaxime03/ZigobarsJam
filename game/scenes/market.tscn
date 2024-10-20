@@ -1,14 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://11761as7of2l"]
+[gd_scene load_steps=4 format=3 uid="uid://11761as7of2l"]
 
-[ext_resource type="Texture2D" uid="uid://7svrq0in4r1o" path="res://assets/art/temp_bloc.png" id="1_qtu6t"]
+[ext_resource type="Script" path="res://scripts/market/marketnode.gd" id="1_w04sm"]
+[ext_resource type="Texture2D" uid="uid://c4ybihjuwhbx5" path="res://assets/art/vaisseau/vaisseauMere.png" id="2_j5jxx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7niy2"]
-radius = 16.52
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mu8a7"]
+radius = 95.0
+height = 346.0
 
-[node name="Market" type="RigidBody2D"]
+[node name="Market" type="StaticBody2D"]
+collision_layer = 256
+script = ExtResource("1_w04sm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_7niy2")
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_mu8a7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_qtu6t")
+position = Vector2(11, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_j5jxx")
+
+[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
