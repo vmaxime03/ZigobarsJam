@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://gh25nvu75n3d"]
+[gd_scene load_steps=10 format=3 uid="uid://gh25nvu75n3d"]
 
 [ext_resource type="AudioStream" uid="uid://dxhn6rcsvn10j" path="res://assets/audio/Voix/cassettes/Intro/intro.wav" id="1_ftnvn"]
 [ext_resource type="Script" path="res://scripts/menu/intro.gd" id="2_pp01d"]
+[ext_resource type="Texture2D" uid="uid://ih3lokql10li" path="res://assets/art/casette/casette.png" id="3_uqucn"]
+[ext_resource type="Script" path="res://scripts/menu/casetteIntro.gd" id="4_cmcus"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwu5a"]
+atlas = ExtResource("3_uqucn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq8tn"]
+atlas = ExtResource("3_uqucn")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw0tq"]
+atlas = ExtResource("3_uqucn")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm30v"]
+atlas = ExtResource("3_uqucn")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lrf0n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwu5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq8tn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw0tq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm30v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="Intro" type="Node2D"]
 
@@ -19,4 +57,14 @@ Nettoyez l’espace des débris présents dans l’orbite
  peuvent être échangés contre de l’argent
  selon leur valeur. Certains d'entre eux peuvent également
  améliorer vos capacités. 
+
+controle de base:                                 controle avancé:  
+se déplacer : zqsd                                grapin  : clic gauche
+freiner : espace                                    dash : shift
+aspirer : clic droit
 "
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(533, 320)
+sprite_frames = SubResource("SpriteFrames_lrf0n")
+script = ExtResource("4_cmcus")
