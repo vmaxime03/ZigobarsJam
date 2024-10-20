@@ -1,6 +1,6 @@
 class_name Donnees
 extends Node 
-@export_file("*.txt") var save_file 
+@export_file("*.txt") var save_file =  "user://save.txt"
 var data : Dictionary
 
 # Called when the node enters the scene tree for the first time.

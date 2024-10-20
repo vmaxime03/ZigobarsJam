@@ -1,8 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
-@export_file("*.txt") var save_file 
-
+@export_file("*.txt") var save_file = "user://save.txt"
+		
 # ajout export pour l'inscpecteur
 @export_group("UPGRADES")
 @export_subgroup("SKILLS")

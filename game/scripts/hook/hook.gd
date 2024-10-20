@@ -55,10 +55,11 @@ func _ready() -> void:
 
 # physique 
 func _physics_process(delta: float) -> void : 
-
+		
 	# actualiser le point du joueur
-	rope.set_point_position(0, player.position)	
-	distance = player.position.distance_to(position)
+	if (player != null):
+		rope.set_point_position(0, player.position)	
+		distance = player.position.distance_to(position)
 	
 	# si le grapin n'est pas acrocher, il avance 
 	if (!fixed):

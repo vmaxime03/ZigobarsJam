@@ -231,7 +231,6 @@ script = ExtResource("14_geya5")
 
 [node name="donnees" type="Node" parent="."]
 script = ExtResource("7_blmx1")
-save_file = "res://data/save0.txt"
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/carburant" to="TextureRect/VBoxContainer/HBoxContainer/carburant" method="_on_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/grapin" to="TextureRect/VBoxContainer/HBoxContainer/grapin" method="_on_pressed"]

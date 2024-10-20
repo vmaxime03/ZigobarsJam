@@ -84,7 +84,6 @@ func _physics_process(delta: float) -> void:
 
 
 
-
 func recuperer() -> int :
 	queue_free()
 	return valeur

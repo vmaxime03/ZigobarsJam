@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://djjadksk6f054"]
+[gd_scene load_steps=8 format=3 uid="uid://djjadksk6f054"]
 
 [ext_resource type="Script" path="res://scenes/mathis/tile_map_layer.gd" id="1_7md10"]
 [ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="2_d11la"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://npvdu3uv6a1d" path="res://scenes/Arrièreplan.tscn" id="4_bo4mo"]
 [ext_resource type="PackedScene" uid="uid://cf0iiluqy0ukw" path="res://scenes/music_player.tscn" id="5_jd6we"]
 [ext_resource type="PackedScene" uid="uid://ckhjn64af6uih" path="res://scenes/radio_player.tscn" id="6_jtlvl"]
+[ext_resource type="PackedScene" uid="uid://cso7aiusk6igt" path="res://scenes/SpawnCassette.tscn" id="7_jf183"]
 
 [node name="Test" type="Node2D"]
 
@@ -23,3 +24,5 @@ position = Vector2(579, 325)
 [node name="MusicPlayer" parent="." instance=ExtResource("5_jd6we")]
 
 [node name="RadioPlayer" parent="." instance=ExtResource("6_jtlvl")]
+
+[node name="SpawnerCassette" parent="." instance=ExtResource("7_jf183")]

@@ -238,7 +238,6 @@ _data = {
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("carbBar", "o2Bar", "interactButton", "body", "arm", "aspirateur", "body_animation_tree", "arm_animation_tree") groups=["joueur"]]
 collision_mask = 262
 script = ExtResource("1_5785e")
-save_file = "res://data/save0.txt"
 carbBar = NodePath("Camera2D/Control/TextureProgressBar")
 o2Bar = NodePath("Camera2D/Control/TextureProgressBar2")
 interactButton = NodePath("Camera2D/Control/SelectButton")
