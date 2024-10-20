@@ -15,6 +15,8 @@ var possede_boite_noire
 @onready var size = RandomNumberGenerator.new().randf_range(minsize,maxsize)
 @onready var value = RandomNumberGenerator.new().randf_range(minvalue,maxvalue)*size
 
+@export var valeur : int = 10
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if(type == débris_vaisseau):
@@ -28,16 +30,21 @@ func _ready() -> void:
 		0:
 			if (rare):
 				sprite.texture = ResourceLoader.load("res://assets/art/dechets/asteroidGold.png")
+				valeur = 5
 			elif(randi_range(0,1)==0): 
 				sprite.texture = ResourceLoader.load("res://assets/art/dechets/asteroide2.png")
+				valeur = 10
 			else:
 				sprite.texture = ResourceLoader.load("res://assets/art/dechets/asteroide1.png")
+				valeur = 15
 		1:
 			if(randi_range(0,1)==0):
 				sprite.texture = ResourceLoader.load("res://assets/art/dechets/debris1.png")
+				valeur = 50
 			else:
 				sprite.texture = ResourceLoader.load("res://assets/art/dechets/debris2.png")
-	
+				valeur = 100
+				
 	add_child(sprite)
 
 	var n = self
@@ -60,3 +67,24 @@ func _getBoiteNoire()->String:
 	if(possede_boite_noire):
 		boite_noire = "test"
 	return boite_noire
+
+
+
+func compute_hook_pull(pull : Vector2, pullforce : int) -> void :
+	hooked = true
+	hook_pull = -pull.normalized() * pullforce/10
+
+
+
+	
+func _physics_process(delta: float) -> void:
+	if (hooked) : 
+		position += hook_pull * delta
+		hooked = false
+
+
+
+
+func recuperer() -> int :
+	queue_free()
+	return valeur

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/mathis/tile_map_layer.gd" id="1_7md10"]
 [ext_resource type="PackedScene" uid="uid://dgxyex6m3exjm" path="res://scenes/player.tscn" id="2_d11la"]
-[ext_resource type="PackedScene" uid="uid://dtvvasinqjniw" path="res://scenes/market.tscn" id="3_0upls"]
-[ext_resource type="PackedScene" uid="uid://bt0oqrg3w11ey" path="res://scenes/Arrièreplan.tscn" id="4_bo4mo"]
+[ext_resource type="PackedScene" uid="uid://11761as7of2l" path="res://scenes/market.tscn" id="3_0upls"]
+[ext_resource type="PackedScene" uid="uid://npvdu3uv6a1d" path="res://scenes/Arrièreplan.tscn" id="4_bo4mo"]
 
 [node name="Test" type="Node2D"]
 
