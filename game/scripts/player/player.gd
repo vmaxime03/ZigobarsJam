@@ -125,7 +125,8 @@ func init_from_file():
 
 # TODO
 func check_for_loose():
-	pass
+	if(o2<=0 || hp<=0):
+		get_tree().change_scene_to_file("res://scenes/gameOverQuitte.tscn")
 
 # update la barre de carburant
 func _update_carb_bar() -> void :
@@ -159,7 +160,6 @@ var dir : Vector2
 func _physics_process(delta: float) -> void:
 	
 	check_for_loose()
-
 
 	mousePos = get_global_mouse_position()
 	vel = velocity

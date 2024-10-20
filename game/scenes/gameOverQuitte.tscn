@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://pifvnapx77ka"]
+
+[ext_resource type="Script" path="res://scripts/market/gameOver.gd" id="1_dve44"]
+[ext_resource type="Script" path="res://button_2.gd" id="2_bp3qi"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -125.5
+offset_right = 172.0
+offset_bottom = 125.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "GAME OVER"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+script = ExtResource("1_dve44")
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_bp3qi")
